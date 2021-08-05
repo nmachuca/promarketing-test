@@ -19,4 +19,5 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+    Route::apiResource('games', \App\Http\Controllers\resources\GameController::class);
 });
