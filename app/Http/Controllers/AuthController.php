@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Http\JsonResponse;
+use App\Models\Role;
+use App\Models\User;
+
 
 class AuthController extends Controller
 {
@@ -23,13 +24,15 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => bcrypt($validated['password'])
+            'password' => Hash::make($validated['password'])
         ]);
+
+        $user->assignRole(Role::VIEWER_ROLE_ID);
 
         return $this->sendResponse(
             [
                 'name' => $user->name,
-                'email' => $user->email,
+                'email' => $user->email
             ],
             "User registered successfully",
             201
