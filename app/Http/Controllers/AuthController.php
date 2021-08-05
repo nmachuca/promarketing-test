@@ -46,11 +46,11 @@ class AuthController extends Controller
         $user= User::where('email', $validated['email'])->first();
 
         if(!$user) {
-            return $this->sendError('User not registered', null, 401);
+            return $this->sendError('User not registered', [], 401);
         }
 
         if(!Hash::check($validated['password'], $user->password)) {
-            return $this->sendError('Credentials not valid', null, 401);
+            return $this->sendError('Credentials not valid', [], 401);
         }
 
         $token = $user->createToken(env('APP_NAME'))->plainTextToken;
