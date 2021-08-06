@@ -18,6 +18,8 @@ class Game extends Model implements HasMedia
      */
     protected $fillable = [
         'name',
-        'url'
+        'url',
+        'description',
+        'status'
     ];
 }
