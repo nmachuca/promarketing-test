@@ -26,4 +26,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         return view('dashboard');
     })->name('dashboard');
     Route::get('/games', \App\Http\Livewire\Game::class)->name('games');
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/users', \App\Http\Livewire\User::class)->name('users');
+    });
 });
