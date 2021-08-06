@@ -26,8 +26,8 @@ With these requirements out of the way you need to execute:
     <li><code>docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/opt -w /opt laravelsail/php80-composer:latest composer install --ignore-platform-reqs</code></li>
     <li><code>cp .env.example .env</code></li>
     <li>set env variables DB_PASSWORD, ADMIN_USER_NAME, ADMIN_USER_EMAIL, ADMIN_USER_PASSWORD</li>
-    <li><code>./vendor/bin/sail artisan key:generate</code></li>
     <li><code>./vendor/bin/sail up -d</code></li>
+    <li><code>./vendor/bin/sail artisan key:generate</code></li>    
     <li><code>./vendor/bin/sail composer update</code></li>
     <li><code>./vendor/bin/sail artisan key:generate</code></li>
     <li><code>./vendor/bin/sail npm install</code></li>
